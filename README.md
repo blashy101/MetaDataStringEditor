@@ -1,4 +1,4 @@
-Chinese -> English UI translation of this remarkably useful tool. Machine translated readme:
+Chinese -> English UI translation of this remarkably useful tool. This claims to be for Android but global-metadata.dat files also appear in Unity games built for Nintendo Switch and sometimes for PS4 and I've had success using this tool for those other platforms multiple times. Machine translated readme:
 
 # Tools for modifying partial strings in global-metadata.dat
 &emsp;&emsp;For Android games exported from the Unity-il2cpp script backend, strings appearing in the code are compiled into the assets\bin\Data\Managed\Metadata\global-metadata.dat file. As part of the localization work, a simple tool was created to modify the strings in this file.
