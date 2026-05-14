@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -57,7 +57,7 @@ namespace MetaDataStringEditor {
         // 菜单栏
         private void 加载ToolStripMenuItem_Click(object sender, EventArgs e) {
             if (status == FormStatus.Loading || status == FormStatus.Saving) {
-                Logger.E("后台操作进行中");
+                Logger.E("Background operations in progress");
                 return;
             }
 
@@ -70,7 +70,7 @@ namespace MetaDataStringEditor {
                         Invoke(new Action(delegate { Text = openFileDialog1.FileName; }));
                         Invoke(new Action(RefreshListView));
                         status = FormStatus.Editing;
-                        Logger.I("加载完成");
+                        Logger.I("Loading complete");
                     } catch (Exception ex) {
                         Logger.E(ex.ToString());
                         file?.Dispose();
@@ -82,7 +82,7 @@ namespace MetaDataStringEditor {
         }
 
         private void RefreshListView() {
-            Logger.I("刷新列表");
+            Logger.I("Refresh list");
 
             listView1.BeginUpdate();
             for (int i = 0; i < file.strBytes.Count; i++) {
@@ -96,7 +96,7 @@ namespace MetaDataStringEditor {
 
         private void 另存为ToolStripMenuItem_Click(object sender, EventArgs e) {
             if (status != FormStatus.Editing) {
-                Logger.E("状态错误");
+                Logger.E("Status error");
                 return;
             }
 
@@ -138,10 +138,10 @@ namespace MetaDataStringEditor {
                 }
 
             }
-            Logger.I("找不到搜索字符串");
+            Logger.I("Search string not found");
         }
 
-        // 修改
+        // Revise
 
         private void ListView1_MouseClick(object sender, MouseEventArgs e)
         {
@@ -174,16 +174,20 @@ namespace MetaDataStringEditor {
                 file.strBytes[(int)item.Tag] = item.OriginStrBytes;
         }
 
-        // 通用
+        // General
         private void ClearForm() {
             listView1.Items.Clear();
             file?.Dispose();
             file = null;
-            Text = "MetadataStringEditor";
+            Text = "Metadata String Editor";
         }
 
         private enum FormStatus { Waiting, Loading, Saving, Editing }
 
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 
     public static class Logger {
